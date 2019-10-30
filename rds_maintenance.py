@@ -74,9 +74,9 @@ class RdsMaintenance(object):
                     ResourceIdentifier=instance['DBInstanceArn']
                 )
                 if instances_pending_mnt['PendingMaintenanceActions']:
-                    for instance_pending_mnt in instances_pending_mnt['PendingMaintenanceActions']:
-                        ins = (instance_pending_mnt['ResourceIdentifier'].split(":"))[6]
-                        for mnt_info in instance_pending_mnt['PendingMaintenanceActionDetails']:
+                    for pending_mnt in instances_pending_mnt['PendingMaintenanceActions']:
+                        ins = (pending_mnt['ResourceIdentifier'].split(":"))[6]
+                        for mnt_info in pending_mnt['PendingMaintenanceActionDetails']:
                             days2mnt = datetime.strptime(mnt_info['CurrentApplyDate'].strftime("%m-%d-%y"), '%m-%d-%y')\
                                        - datetime.strptime(datetime.now().strftime("%m-%d-%y"), '%m-%d-%y')
                             data = [
